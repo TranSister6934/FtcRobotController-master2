@@ -14,6 +14,7 @@ public class Hardwaremap {
     public DcMotor FrontLeft = null;
     public DcMotor BackRight = null;
     public DcMotor BackLeft = null;
+    public DcMotor Arm = null;
 
     HardwareMap hwMap = null;
 
@@ -25,6 +26,7 @@ public class Hardwaremap {
         FrontLeft = hwMap.dcMotor.get("FL");
         BackRight = hwMap.dcMotor.get("BR");
         BackLeft = hwMap.dcMotor.get("BL");
+        Arm = hwMap.dcMotor.get("Arm");
 
         FrontLeft.setDirection(DcMotorSimple.Direction.REVERSE);
         BackLeft.setDirection(DcMotorSimple.Direction.REVERSE);

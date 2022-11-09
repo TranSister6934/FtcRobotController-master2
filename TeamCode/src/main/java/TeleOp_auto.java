@@ -15,9 +15,9 @@ public class TeleOp_auto extends OpMode {
 
         hm.Init_robot(hardwareMap);
 
-        hm.BackLeft.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
-        hm.BackLeft.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
-        hm.BackLeft.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.BRAKE);
+        hm.Arm.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
+        hm.Arm.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
+        hm.Arm.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.BRAKE);
 
     }
 
@@ -35,28 +35,28 @@ public class TeleOp_auto extends OpMode {
 
         if (gamepad1.dpad_up) {
 
-            if (hm.BackLeft.getCurrentPosition() < 3000) {
+            if (hm.Arm.getCurrentPosition() > -3000) {
 
-                hm.BackLeft.setPower(0.5);
-                EV = hm.BackLeft.getCurrentPosition();
-                hm.BackLeft.setTargetPosition(EV);
+                hm.Arm.setPower(0.1);
+                EV = hm.Arm.getCurrentPosition();
+                hm.Arm.setTargetPosition(EV);
 
             } else {
-                hm.BackLeft.setPower(0);
+                hm.Arm.setPower(0);
             }
 
         } else if (gamepad1.dpad_down) {
 
-            if (hm.BackLeft.getCurrentPosition() > 60) {
+            if (hm.Arm.getCurrentPosition() < -250) {
 
-                hm.BackLeft.setPower(-0.5);
+                hm.Arm.setPower(-0.1);
 
             } else {
-                hm.BackLeft.setPower(0);
+                hm.Arm.setPower(0);
             }
 
         } else {
-            hm.BackLeft.setPower(0.0);
+            hm.Arm.setPower(0.0);
         }
 
 
@@ -66,7 +66,7 @@ public class TeleOp_auto extends OpMode {
        telemetry.addData("left X", gamepad1.left_stick_x);
        telemetry.addData("right X", gamepad1.right_stick_x);
 
-        telemetry.addData("FrontRight", hm.BackLeft.getCurrentPosition());
+        telemetry.addData("Arm", hm.Arm.getCurrentPosition());
 
         
     }
